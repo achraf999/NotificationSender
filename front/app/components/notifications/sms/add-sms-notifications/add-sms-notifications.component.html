@@ -1,0 +1,109 @@
+<div class="col-md-6 mx-auto" >
+
+    <form id="contact-form">
+    <fieldset class="form-group border p-3">
+    <legend></legend>
+    
+
+        <a ><button routerLink="/whatsapp/list-notifications" class="btn btn-primary pull-right"><i class="fa fa-times"></i></button></a>
+        <!-- <div class="col-md-6">
+            <div class="form-group col-xs-3">
+                <label for="form_need">Choisir le type de la notification *</label>
+                <select [(ngModel)]="noti_type" id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                    <option value="0" >Notification par Email</option>
+                    <option value="1">Notification par Whatsapp </option>
+                    <option value="2">Notification par SMS </option>
+                </select>
+                <div class="help-block with-errors"></div>
+            </div>
+        </div> -->
+    
+    
+    
+    <div class="col-md-12" >
+        <div class="form-group col-xs-3">
+            <label for="form_email">Message *</label>
+            <textarea required [(ngModel)]="notification.message" id="form_email" type="email" name="email" class="form-control" placeholder="Entrer le message à envoyer *" required="required" data-error="Valid email is required."></textarea>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="form-group col-xs-3">
+            <label  for="num_days">Nombre de jours: </label>
+            <input required [(ngModel)]="notification.daysNum" class="form-control" name="num_days" id="num_days" type="number">
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="form-group">
+            <h6>Méthode de chargement des destinataires:</h6>            
+            <input name="options"  [(ngModel)]="options" type="radio" [value]="false" [checked]="!options" id="man" checked >
+            <label for="man"> Manuelle</label><br>
+            <input name="options"[(ngModel)]="options" type="radio" [value]="true" [checked]="options" id="auto">
+            <label for="auto"> Automatique</label><br>
+        </div>
+    </div>
+
+
+    <div class="custom-file" *ngIf="!options">
+        <input type="file" name="file" id="csvFileUpload" accept=".csv" (change)="onFileChanged($event)"><br> <br>
+        <div *ngIf="csv" class="alert-danger">
+            Aucun fichier CSV choisi
+        </div>
+        <input type="submit" class="btn btn-success btn-send" value="Importer le fichier" (click)="onUpload()">
+    </div>
+
+
+    <div class="form-group" *ngIf="options">
+        <label for="dbPath">Chaine de connexion à la base de données</label>
+        <input class="form-control" type="text" name="clientDBPath" id="dbPath">
+        <label for="script">Script de chargement des destinataires</label>
+        <input class="form-control" type="text" name="script" id="script">
+    </div>
+    <br><br>
+
+    <h6>Type d'envoi</h6>
+    <div class="form-check">
+        <input [(ngModel)]="oneShot" [value]="false" [checked]="!oneShot" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" >
+        <label class="form-check-label" for="flexRadioDefault1" >
+          Périodique
+        </label>
+    </div> 
+      
+      <div class="form-check">
+        <input [(ngModel)]="oneShot" [value]="true" [checked]="oneShot" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+        <label class="form-check-label" for="flexRadioDefault2">
+          Une seule fois
+        </label>
+      </div> 
+ <br>
+   
+    <div class="form-group">
+        <label for="date&time">Date et heure d'envoi</label>
+        <input required [(ngModel)]="notification.date_envoi"   class="form-control" type="datetime-local" name="sendingDate" id="date&time">
+        <br>
+    </div>
+
+    
+        <div class="form-group">
+            <div class="form-group">
+                <button class="btn btn-success btn-send pull-right" (click)="scheduleSmsNotification()"  >Programmer l' SMS<i style="margin-left: 5px;" class="fa fa-comments"></i></button>
+            </div>
+            <!-- <div *ngIf="noti_type == 1" class="form-group">
+                <input type="submit" class="btn btn-success btn-send pull-right" (click)="scheduleWhatsappNotification()" value="Programmer la notification Whatsapp" >
+            </div>
+            <div *ngIf="noti_type == 2" class="form-group">
+                <input type="submit" class="btn btn-success btn-send pull-right" (click)="scheduleSmsNotification()" value="Programmer l'SMS" > 
+            </div> -->
+        </div>
+        
+
+    
+
+
+
+</fieldset>
+</form>
+    </div>

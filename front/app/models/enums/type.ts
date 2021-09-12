@@ -1,0 +1,5 @@
+export enum Type {
+    EMAIL_NOTIFICATION,
+    SMS_NOTIFICATION,
+    WHATSAPP_NOTIFICATION
+}

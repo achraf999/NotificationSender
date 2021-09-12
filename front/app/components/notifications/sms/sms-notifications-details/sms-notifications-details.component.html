@@ -1,0 +1,30 @@
+<div class="row m-3">
+    <div class="col-md-12">
+        <a routerLink="/sms/list-notifications"><i class="fa fa-arrow-circle-left"></i></a>
+    </div>
+    
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Id: {{sms.id}}</h4>
+        <div class="row">
+            <div class="col-md-8">
+               
+
+                <ul class="list-group" >
+                    <button class="btn btn-info" (click)="sendNotificationNow()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    <li class="list-group-item">Type: <strong>{{ sms.type }}</strong></li>
+                    <li class="list-group-item">Message: <strong>{{ sms.message }}</strong></li>
+                    <li class="list-group-item">Heure d'envoi: <strong>{{ sms.date_envoi  }}</strong></li>
+                    <li class="list-group-item">Fréquence: <strong>{{ sms.frequence  }}</strong></li>
+
+                    <li class="list-group-item">Importation: <strong>{{ sms.impoMethod  }}</strong></li>
+                    <li class="list-group-item">Status: <strong>{{ sms.status  }}</strong></li>
+
+                    </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

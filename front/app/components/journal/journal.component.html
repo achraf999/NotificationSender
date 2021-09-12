@@ -1,0 +1,40 @@
+<div class="card mx-auto" style="width: 1200px;" *ngIf="logs?.length">
+
+    <div class="card-body">
+        <button (click)="deleteLogs()" class="btn btn-danger pull-right">Supprimer tous<i style="margin-left: 5px;" class="fa fa-times"></i></button>
+
+        <h4 class="card-title">LOGS </h4>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Action</th>
+                    <th>Date et heure </th>
+                    <th>Statut</th>
+                    <th>Message d'erreur</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let log of logs">
+                    <td>{{log.id}}</td>
+                    <td>{{log.action}}</td>
+                    <td>{{log.date_log | date:'medium' }}</td>
+                    <td>{{log.status}}</td>
+                    <td>{{log.errorMessage}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="container" *ngIf="!logs?.length">
+        <div class="d-flex justify-content-sm-center" >
+            <img width="90" src="https://i2.wp.com/www.goodnewsclubgwinnett.org/wp-content/uploads/2020/08/grunge-yes-no-icon-6.png?fit=2000%2C1997&ssl=1" alt="noContent">
+            <h2 style="font-family: fantasy;   display: block; margin: 30px 0 0 10px ;">Aucun Log disponible</h2>
+        </div>
+
+    </div>
+    

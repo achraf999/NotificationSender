@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<div class="card mx-auto" style="width: 1200px;" *ngIf="notifications?.length">
+    <div class="card-body" >
+        <h4 class="card-title">Liste des notifications programmées  <button routerLink="/email/add-notifications" class="btn btn-success pull-right"><i class="fa fa-plus"></i></button></h4>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Détails</th>
+                    <th>Type</th>
+                    <th>Date et heure d'envoi</th>
+                    <th>Statut</th>
+                    <th>Envoyer</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let notification of notifications">
+                    <td><button class="btn btn-dark" routerLink="/email/notification-details/{{ notification.id }}" ><i class="fa fa-list" aria-hidden="true"></i></button></td>
+                    <td>{{notification.type}}</td>
+                    <td>{{notification.date_envoi | date:'medium'  }}</td>
+                    <td>{{notification.status}}</td>
+                    <td><button class="btn btn-info" (click)="sendNotificationNow()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button></td>
+                    <td><button class="btn btn-warning" (click)="editNotification(notification.id)"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+                    <td><button class="btn btn-danger" (click)="deleteEmailNotification(notification.id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="container" *ngIf="!notifications?.length">
+    <div class="d-flex justify-content-sm-center" >
+        <img width="90" src="https://i2.wp.com/www.goodnewsclubgwinnett.org/wp-content/uploads/2020/08/grunge-yes-no-icon-6.png?fit=2000%2C1997&ssl=1" alt="noContent">
+        <h2 style="font-family: fantasy;   display: block; margin: 30px 0 0 10px ;">Aucune notification disponible</h2>
+    </div>
+    <div class="col-md-12 text-center">
+        <button routerLink="/email/add-notifications" class="btn btn-success"><i class="fa fa-plus"></i></button>
+    
+    </div>
+</div>
+
